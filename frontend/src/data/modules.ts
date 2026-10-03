@@ -25,6 +25,17 @@ export const MODULES: ModuleMeta[] = [
     metrics: ["运行中管段", "检修中管段", "已废弃管段"],
   },
   {
+    key: "primaryrepair",
+    name: "一次管网检修单",
+    entity: "检修单",
+    desc: "一次管网管段批量报送检修生成的检修单，按敷设方式分组安排，设计压力由检修队实测后回填。",
+    fields: ["检修单号", "批次号", "管段编号", "起点", "终点", "公称管径", "敷设方式", "设计压力", "检修队", "报送时间"],
+    statuses: ["待实测", "已回填"],
+    actions: ["回填设计压力"],
+    actionTargets: {"回填设计压力": "已回填"},
+    metrics: ["待实测检修单", "已回填检修单"],
+  },
+  {
     key: "secondarynet",
     name: "二次管网",
     entity: "二次管网管段",

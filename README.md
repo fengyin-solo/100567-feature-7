@@ -44,6 +44,7 @@ npm run build
 | --- | --- | --- | --- |
 | 换热站台账 | `heatstation` | 换热站 | 站名、所属片区、供热面积 |
 | 一次管网 | `primarynet` | 一次管网管段 | 管段编号、起点、终点 |
+| 一次管网检修单 | `primaryrepair` | 检修单 | 检修单号、批次号、敷设方式 |
 | 二次管网 | `secondarynet` | 二次管网管段 | 管段编号、所属片区、公称管径 |
 | 站点巡检 | `stationpatrol` | 巡检记录 | 巡检编号、巡检站点、巡检路线 |
 | 室温监测 | `roomtemp` | 室温监测点 | 监测编号、住户地址、所属片区 |
@@ -67,5 +68,17 @@ npm run build
   `frontend/src/api/local-service.ts`。
 - 字段、状态、动作与流转目标集中在 `frontend/src/data/modules.ts`；示例数据在
   `frontend/src/data/seed.ts`。
-- 状态流转只允许在 `local-service.ts` 里改，页面组件不做业务判断。
+- 状态流转只允许在 `local-service.ts` 里改，页面组件不做业务判断；状态只能按
+  `modules.ts` 里登记的顺序逐级推进，越级（含倒退）一律拒收。
+- 一次管网批量送检修走 `frontend/src/api/repair-service.ts`：框选管段一次报送，
+  缺起点/终点的管段拦下挂起（补录后解除），检修单按敷设方式分组落单、重复报送只落一条；
+  设计压力由检修队实测后回填，回填值同步写回管段列表，两处始终是同一套；
+  送检后关联阀门井自动回到「待检查」清单。
 - 想回到初始数据：清掉浏览器里 `district-heating:entries` 这一项，或调用 `resetModule(模块)`。
+
+## 测试
+
+```bash
+cd frontend
+npm test
+```

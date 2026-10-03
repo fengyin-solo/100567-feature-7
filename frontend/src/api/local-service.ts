@@ -43,6 +43,15 @@ export function runAction(key: string, id: number, action: string): ActionResult
   if (current === target) {
     return { ok: false, message: `${meta.entity}已经是「${target}」，不用重复操作` }
   }
+  // 状态只能按 statuses 登记顺序逐级推进，越级（含倒退）一律拒收。
+  const currentIndex = meta.statuses.indexOf(current)
+  const targetIndex = meta.statuses.indexOf(target)
+  if (currentIndex < 0 || targetIndex !== currentIndex + 1) {
+    return {
+      ok: false,
+      message: `${meta.entity}当前状态「${current}」不能越级到「${target}」，须按${meta.statuses.join('→')}逐级推进`,
+    }
+  }
   const lastStatus = meta.statuses[meta.statuses.length - 1]
   const updated: EntryRow = {
     ...rows[index],
