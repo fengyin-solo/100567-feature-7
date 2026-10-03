@@ -43,6 +43,16 @@ export function runAction(key: string, id: number, action: string): ActionResult
   if (current === target) {
     return { ok: false, message: `${meta.entity}已经是「${target}」，不用重复操作` }
   }
+  if (meta.strictFlow) {
+    const currentStep = meta.statuses.indexOf(current)
+    const targetStep = meta.statuses.indexOf(target)
+    if (targetStep !== currentStep + 1) {
+      return {
+        ok: false,
+        message: `${meta.entity}须按 ${meta.statuses.join('→')} 逐级推进，当前「${current}」越级到「${target}」，已拒收`,
+      }
+    }
+  }
   const lastStatus = meta.statuses[meta.statuses.length - 1]
   const updated: EntryRow = {
     ...rows[index],

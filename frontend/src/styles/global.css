@@ -35,3 +35,18 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .error-text { color: #b42318; }
 .status-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 10px; font-size: 12px; color: var(--muted); }
 .legend-item { background: #eef2f7; border-radius: 999px; padding: 2px 10px; }
+.batch-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+.batch-hint { color: var(--muted); font-size: 12px; }
+.batch-result { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 13px; }
+.batch-result p { margin: 4px 0; }
+.check-col { width: 32px; text-align: center; }
+.tag { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; font-size: 12px; background: #eef2f7; }
+.tag.warn { background: #fef3c7; color: #92400e; }
+.row-suspended td { background: #fffbeb; }
+.order-panel { margin-top: 20px; }
+.order-panel h3 { margin: 0 0 8px; font-size: 15px; }
+.order-group { margin-bottom: 16px; }
+.order-group h4 { margin: 8px 0; font-size: 13px; color: var(--muted); }
+.order-message { color: var(--brand); font-size: 13px; margin: 4px 0 10px; }
+.pressure-cell { display: flex; gap: 6px; align-items: center; }
+.pressure-cell input { width: 150px; }

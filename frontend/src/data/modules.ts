@@ -23,6 +23,7 @@ export const MODULES: ModuleMeta[] = [
     actions: ["提交投运", "登记检修", "报废管段"],
     actionTargets: {"提交投运": "运行中", "登记检修": "检修中", "报废管段": "已废弃"},
     metrics: ["运行中管段", "检修中管段", "已废弃管段"],
+    strictFlow: true,
   },
   {
     key: "secondarynet",
